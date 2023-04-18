@@ -43,6 +43,20 @@ export default defineConfig({
   plugins: [
     // requireTransform({ fileRegex: /.js$/ }),
     react(),
+    // {
+    // babel: {
+    //   plugins: [
+    //     [
+    //       'babel-plugin-styled-components-px2vw',
+    //       {
+    //         unitToConvert: 'px',
+    //         unitPrecision: 5,
+    //         minPixelValue: 0,
+    //       },
+    //     ],
+    //   ],
+    // },
+    // }
     viteEslint({
       failOnError: false,
     }),
