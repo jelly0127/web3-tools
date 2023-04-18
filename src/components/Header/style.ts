@@ -11,6 +11,7 @@ const RootBox = styled.div`
   height: 58px;
   width: 100%;
   padding: 0 20px;
+  z-index: 99999;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
