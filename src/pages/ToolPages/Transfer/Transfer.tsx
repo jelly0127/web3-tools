@@ -33,7 +33,7 @@ const Transfer: FC = () => {
   const [CheckLoading, setCheckLoading] = useState(false)
   const [SendLoading, setSendLoading] = useState(false)
   const [ShowOrder, setShowOrder] = useState(false)
-  const TransferContract = useContract(CONFIG.BSC_TESTNET, ABI_MAP.transferTest)
+  const TransferContract = useContract(chainId === 97 ? CONFIG.BSC_TESTNET : CONFIG.BSC, ABI_MAP.transferTest)
 
   const [OrderDetails, setOrderDetails] = useImmer<DetailType>({
     network: NETWORK_CONFIG[chainId!]?.chainName ? NETWORK_CONFIG[chainId!].chainName : '',
