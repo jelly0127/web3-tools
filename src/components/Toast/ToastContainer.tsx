@@ -5,6 +5,7 @@ import styled from 'styled-components'
 
 const StyledContainer = styled(Container)`
   font-size: ${(prop: any) => prop.theme.fontNormal};
+  margin-top: 50px;
   align-items: center;
   .Toastify__toast {
     flex-direction: row;

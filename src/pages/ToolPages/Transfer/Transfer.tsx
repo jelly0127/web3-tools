@@ -33,6 +33,7 @@ const Transfer: FC = () => {
   const [CheckLoading, setCheckLoading] = useState(false)
   const [SendLoading, setSendLoading] = useState(false)
   const [ShowOrder, setShowOrder] = useState(false)
+  const [isCheck, setIsCheck] = useState(false)
   const TransferContract = useContract(chainId === 97 ? CONFIG.BSC_TESTNET : CONFIG.BSC, ABI_MAP.transferTest)
 
   const [OrderDetails, setOrderDetails] = useImmer<DetailType>({
@@ -92,11 +93,7 @@ const Transfer: FC = () => {
               })
               .catch((e: any) => {
                 console.log(e)
-                setSendLoading(false)
                 reject(e)
-              })
-              .finally(() => {
-                setSendLoading(false)
               })
           }),
         })
@@ -104,6 +101,10 @@ const Transfer: FC = () => {
       .catch((err: { reason: any }) => {
         console.log(err)
         toast({ text: err.reason || err, type: 'error' })
+      })
+      .finally(() => {
+        setSendLoading(false)
+        setIsCheck(false)
       })
   }
   const handleClickCheck = async () => {
@@ -131,10 +132,15 @@ const Transfer: FC = () => {
     }
     setWalletList(dataArray)
     setShowLoading(false)
-
     return setShowAddress(true)
   }
   const handleClickDetail = async () => {
+    if (!Amount) {
+      return toast({ text: 'Input amounts please', type: 'error' })
+    }
+    if (WalletList.length < 1) {
+      return toast({ text: 'Input address please', type: 'error' })
+    }
     setCheckLoading(true)
     await getBalance(account!, provider!)
       .then(res => {
@@ -155,6 +161,8 @@ const Transfer: FC = () => {
         console.log(err)
       })
     setCheckLoading(false)
+    setIsCheck(true)
+
     setShowOrder(true)
   }
   const chainBox = () => {
@@ -268,11 +276,11 @@ const Transfer: FC = () => {
           <div className="btn_row_box">
             <Button className="button" onClick={handleClickDetail} loading={CheckLoading}>
               <img src={ICON_LOOK} alt="" />
-              检查订单
+              订单详情
             </Button>
           </div>
           <div className="btn_row_box left">
-            <Button className="button" onClick={handleTransfer} loading={SendLoading}>
+            <Button className="button" onClick={handleTransfer} loading={SendLoading} disabled={!isCheck}>
               <img src={ICON_PLANE} alt="" />
               开始执行
             </Button>
