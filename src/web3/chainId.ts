@@ -13,7 +13,7 @@ const MAINNET_CHAIN_ID = 97
 //default network url map
 export const CHAIN_TO_URL_MAP = {
   // [MAINNET_CHAIN_ID]: 'https://mainnet.infura.io/v3/84842078b09946638c03157f83405213',
-  [MAINNET_CHAIN_ID]: 'https://data-seed-prebsc-2-s3.binance.org:8545',
+  [MAINNET_CHAIN_ID]: 'https://bsc-testnet.public.blastapi.io',
 }
 
 export const CHAIN_IDS_TO_NAMES = {
@@ -74,8 +74,8 @@ export const NETWORK_CONFIG: NetworkConfig = {
     chainId: [ChainId.BSC_TEST],
     chainName: 'BSC_Testnet',
     rpcUrls: [
-      'https://data-seed-prebsc-2-s3.binance.org:8545',
-      'https://data-seed-prebsc-1-s3.binance.org:8545',
+      'https://bsc-testnet.public.blastapi.io',
+      'https://endpoints.omniatech.io/v1/bsc/testnet/public',
       'https://data-seed-prebsc-1-s2.binance.org:8545',
       'https://data-seed-prebsc-2-s1.binance.org:8545',
     ],
